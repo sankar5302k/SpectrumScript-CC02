@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+    </script>
+
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+     <style>
+
+      
+      body {
+        background-color: #242424 !important;
+        padding-top: 8rem;
+        
+      }
+/* chart started*/
+#container{
+  font-family: monospace;
+  border-radius:20px;
+}
+.highcharts-figure,
+.highcharts-data-table table {
+  font-family: monospace;
+    min-width: 320px;
+    max-width: 800px;
+    margin: 1em auto;
+    padding-top:30px;
+}
+
+.highcharts-data-table table {
+    font-family: monospace, monospace;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    font-family: monospace;
+    color: #555;
+}
+
+.highcharts-data-table th {
+  font-family: monospace;
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  font-family: monospace;
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  font-family: monospace;
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  font-family: monospace;
+    background: #f1f7ff;
+}
+
+/* chart completed*/
+
+*{
+  box-sizing: border-box;  
+}
+  
+   .dc{
+    margin: auto;
+    width: 40%;
+    padding-right: 20px;
+    padding-bottom: 20px;
+
+  }
+  .column1 {
+    float: left;
+    width: 33.333333333333333333333333333333%;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row1 {
+    
+    background-color: transparent;
+    border-radius:20px;
+    margin: 20px;
+    padding-top: 5px;
+    padding-left: 20px;
+    filter:drop-shadow(rgb(161, 161, 161) 0rem 0rem 2px); 
+  }
+  
+  /* Clear floats after the column1s */
+  .row1:after {
+    content: "";
+    display: table;
+    clear: both;
+
+  }
+  
+  /* Responsive column11s */
+  @media screen and (max-width: 1200px) {
+    .column1 {
+      width: 50%;
+      
+    }
+    .dc{
+      width: 60%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .column1 {
+      width: 100%;
+      display: block;
+    }
+    .dc{
+      width: 60%;
+    }
+   .cont{
+    display: block;
+   }
+
+  }
+  @media screen and (max-width: 320px) {
+    .row1{
+      min-width: 270px;
+      margin: 20px;
+    }
+    .color-ranges{
+      min-width: 320px;
+    }
+    .card-container2{
+      margin: auto;
+    }
+  }
+
+  .color-ranges{
+      margin: auto;
+      padding-top: 20px;
+      text-align: center;
+    }
+    .color-ranges-texts{
+      color: white;
+      font-family: monospace;
+    }
+    .color-ranges-main{
+      margin: auto;
+      text-align: center;
+      font-family: monospace;
+    }
+    .color-ranges-texts-main{
+      color: white;
+      margin-bottom: 50px;
+    }
+  /* Style the counter card1s */
+  .card1 {
+    border-radius: 5px;
+    
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+  }
+  .card3 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: scale 0.6s, rotate 0.6s, filter 1s;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
+  }
+
+
+  @keyframes fadeIn {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+  
+  .item1 {
+    padding-top: 15px;
+    font-family: monospace;
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-color:black;
+    /* animation: fadeIn 1.5s forwards; */
+    animation-timing-function: ease;
+    line-height: 1;
+    /* transform: scale(0.98); */
+    
+    transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    transition-duration: .1s;
+    
+
+    
+    
+  }
+  
+  
+  .card-container {
+  width: 50%;
+  height: 100px;
+
+  min-width: 300px;
+  margin: auto;
+  position: relative;
+  border-radius: 10px;
+  
+}
+
+.card-container::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+
+  
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  border-radius: solid;
+  overflow: hidden;
+  border-width:5px;
+  border-color:white;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: scale 0.6s, rotate 0.6s, filter 1s;
+
+}
+
+
+
+.card .content {
+  
+  background: rgba(0, 0, 0, 0.3);
+  font-family: monospace;
+  text-transform: uppercase;
+  justify-content: center;
+  gap: 10px;
+  color: #e8e8e8;
+  padding: 5px 40px;
+  line-height: 1.5;
+  border-radius: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(50px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card .content .heading {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.card:hover .content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+  .item1:hover{
+    border-radius: 2px;
+    transform: scale(1.1);
+    z-index: 100;
+    transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    transition-duration: .1s;
+    border-radius: 15px;
+
+  
+    
+  }
+  .item1:hover .textforcolors{
+    opacity: 1;
+  }
+  
+  .textforcolors{
+    font-size: 15px;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  .docolor{
+    border-radius: 10px;
+    padding: 5px;
+    position: absolute;
+    opacity: 1;
+    margin: auto;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    font-family: monospace;
+    text-transform: uppercase;
+    color: white;
+    font-size: 30px;
+    
+  }
+  .card:hover .docolor{
+    opacity: 0;
+  }
+  .card3:hover .docolor{
+    opacity: 0;
+  }
+  #resc{
+    width:120px;
+    height:20px; 
+    background-color:black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius:7px;
+
+  }
+   
+  .card-container2 {
+    width: 60%;
+    height: 100px;
+    min-width: 300px;
+    margin: auto;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: rgba(174, 174, 174, 0.123) 0px 6px 12px -2px,
+    rgba(166, 166, 166, 0.171) 0px 3px 7px -3px;
+  transition: all ease-in-out 0.3s;
+    
+  }
+  .card-container2:hover{
+    transform: scale(1.1);
+    box-shadow: rgba(184, 184, 184, 0.47) 0px 2px 1px, rgba(232, 232, 232, 0.09) 0px 4px 2px,
+    rgba(194, 194, 194, 0.368) 0px 8px 4px, rgba(209, 209, 209, 0.09) 0px 16px 8px,
+    rgba(170, 170, 170, 0.11) 0px 32px 16px;
+  }
+  
+  .card-container2::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+  }
+  
+  .card3 {
+    width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: scale 0.6s, rotate 0.6s, filter 1s;
+    
+  }
+  
+ 
+  
+  
+  
+  .card3 .content {
+    padding: 5px 40px;
+    line-height: 1.5;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    font-family: monospace;
+    text-transform: uppercase;
+    justify-content: center;
+    /* align-items: center;
+    align-content: center;
+    text-align: center; */
+    color: #e8e8e8;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+ 
+  .heading {
+   margin: auto;
+    font-size: 32px;
+    /* align-items: center;
+    align-content: center;
+    text-align: center; */
+    font-weight: 700; 
+  }
+  
+  .card3:hover .content {
+    opacity: 1;
+    /* transform: translateY(0); */
+  }
+  
+
+ 
+ 
+
+
+
+
+
+
+
+  
+
+     </style>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+  </head>
+<body>
+   <header>
+    <nav class="navbar navbar-expand-xl bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'Color_Data' %}">SpectrumScript</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'Color_Data' %}"><i class="bi bi-house-fill" style="font-size: 1.2rem;"></i> <span class="px-1" style="font-size: 1.2rem; ">Home</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sec1"><i class="bi bi-brush-fill" style="font-size: 1.2rem;"></i> <span class="px-1" style="font-size: 1.2rem; ">Primary and Secondary Pick</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sec3"><i class="bi bi-palette" style="font-size: 1.2rem;"></i> <span class="px-1" style="font-size: 1.2rem; ">Shades</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d"  href="#sec4"><i class="bi bi-paint-bucket" style="font-size: 1.2rem;"></i> <span class="px-1" style="font-size: 1.2rem; ">Co ordinators</span></a>
+            </li>
+            <li class="nav-item px-5">
+              <span style="font-size: 1.2rem;">Selected color</span>
+            <div>  <div  id="resc" > </div>
+            </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="color-ranges-main">
+    <h1 class="color-ranges-texts-main">Results</h1>
+  </div>
+
+  <div class="card-container2" id="sec1">
+    <div class="card3"  onclick="copyc('{{all.0}}')" style="background-color: {{all.0}};">
+      <p class="docolor" >Primary Color</p>
+      <div class="content">
+        <p class="heading">{{all.0}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="color-ranges">
+    <h2 class="color-ranges-texts">Primary Color Ranges</h2>
+  </div>
+  
+    
+
+  <div class="row1" id = 'bg'>
+    
+    <div class="dc" >
+      <div class="card1">
+        <div class="card2">
+        {% for x in dp %}
+        <div class="item1 " onclick="chBackcolor('{{x}}')" style="background-color: {{x}};">
+          <p class="textforcolors">{{x}}</p>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr style="color:white;">
+  <div class="card-container2" id="sec1">
+    <div class="card3"  onclick="copyc('{{sdp}}')" style="background-color: {{sdp}};">
+    <p class="docolor">Secondary Color</p>
+    <div class="content">
+      <p class="heading">{{sdp}}</p>
+    </div>
+  </div>
+  </div>
+
+  <div class="color-ranges">
+    <h2 class="color-ranges-texts">Secondary Color Ranges</h2>
+  </div>
+
+  <div class="row1" id = 'bg'>
+    
+    <div class="dc" >
+      <div class="card1">
+        {% for x in sp %}
+        <div class="item1 " onclick="chBackcolor('{{x}}')" style="background-color: {{x}};">
+          <p class="textforcolors">{{x}}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <hr style="color:white;">
+
+  
+  <div class="color-ranges" id = "sec3">
+    <h2 class="color-ranges-texts">Shades Anlaysis&nbsp;<i class="bi bi-activity"></i></h2>
+  </div>
+    
+    <!-- chart (starting)-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+</figure>
+
+    <!-- char (ending)> -->
+
+  <!--palette-->
+  <div class="row1" id = 'bg'>
+    {% for x in acr %}
+    <div class="column1" >
+      <div class="card1">
+        {% for ec in x %}
+        <div class="item1 " onclick="chBackcolor('{{ec}}')" style="background-color: {{ec}};">
+          <p class="textforcolors">{{ec}}</p>
+        </div>
+        {% endfor %} 
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <hr style="color:white;">
+ 
+    <div class="color-ranges" id = "sec4">
+      <h2 class="color-ranges-texts">Co ordinators&nbsp;<i class="bi bi-paint-bucket"></i></h2>
+    </div>
+
+  <!--palette-->
+  <div class="row1" id = 'bg'>
+    <div class="dc" >
+      <div class="card1">
+        {% for ec in mc %}
+        <div class="item1 " onclick="chBackcolor('{{ec}}')" style="background-color: {{ec}};">
+          <p class="textforcolors">{{ec}}</p>
+        </div>
+        {% endfor %} 
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="bg-light py-4 py-md-5 py-xl-8 border-top border-light-subtle">
+      <div class="container overflow-hidden">
+        <div class="row gy-4 gy-md-0 align-items-md-center">
+          <div class="col-xs-12 col-md-7 order-1 order-md-0">
+            <div class="copyright text-center text-md-start">
+              &copy; 2024. All Rights Reserved.
+            </div>
+            <div class="credits text-secondary text-center text-md-start mt-2 fs-8">
+              Built by <a href="#" class="link-secondary text-decoration-none">SpectrumScripters</a> with <span class="text-primary">&#9829;</span>
+            </div>
+          </div>
+  
+          <div class="col-xs-12 col-md-5 order-0 order-md-1">
+            <div class="social-media-wrapper">
+              <ul class="list-unstyled m-0 p-0 d-flex justify-content-center justify-content-md-end">
+                <li class="me-3">
+                  <a href="https://www.linkedin.com/in/sankara-narayana-sv-096a41279/" class="link-dark link-opacity-75-hover">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                    </svg>
+
+                  </a>
+                </li>
+                <li class="me-3">
+                  <a href="https://www.instagram.com/sankaranarayana1/" class="link-dark link-opacity-75-hover">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                      <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                    </svg>
+                  </a>
+                </li>
+                <li class="me-3">
+                  <a href="https://www.youtube.com/channel/UC3st32ilOFR1qdbmm32Q4pw" class="link-dark link-opacity-75-hover">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                      <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+    <script>
+      var tlabels = [
+        {% for x in all %}
+        {name:"{{x}}"},
+        {% endfor %}
+      ]
+      var tcolor = [
+        {% for x in all %}
+        {color:"{{x}}"},
+        {% endfor %}
+      ]
+      var tpercent = [
+        {% for x in per %}
+        {y: {{x}}},
+        {% endfor %}
+      ]
+      var size = Object.keys(tlabels).length;
+      var teste = []
+      for (let i = 0; i < size; i++) {
+        teste.push(Object.assign(tlabels[i], tpercent[i], tcolor[i]));
+      }
+      
+      
+      (function (H) {
+    H.seriesTypes.pie.prototype.animate = function (init) {
+        const series = this,
+            chart = series.chart,
+            points = series.points,
+            {
+                animation
+            } = series.options,
+            {
+                startAngleRad
+            } = series;
+
+        function fanAnimate(point, startAngleRad) {
+            const graphic = point.graphic,
+                args = point.shapeArgs;
+
+            if (graphic && args) {
+
+                graphic
+                    
+                    .attr({
+                        start: startAngleRad,
+                        end: startAngleRad,
+                        opacity: 1
+                    })
+                    
+                    .animate({
+                        start: args.start,
+                        end: args.end
+                    }, {
+                        duration: animation.duration / points.length
+                    }, function () {
+                        
+                        if (points[point.index + 1]) {
+                            fanAnimate(points[point.index + 1], args.end);
+                        }
+                        
+                        if (point.index === series.points.length - 1) {
+                            series.dataLabelsGroup.animate({
+                                opacity: 1
+                            },
+                            void 0,
+                            function () {
+                                points.forEach(point => {
+                                    point.opacity = 1;
+                                });
+                                series.update({
+                                    enableMouseTracking: true
+                                }, false);
+                                chart.update({
+                                    plotOptions: {
+                                        pie: {
+                                            innerSize: '40%',
+                                            borderRadius: 8
+                                        }
+                                    }
+                                });
+                            });
+                        }
+                    });
+            }
+        }
+
+        if (init) {
+           
+            points.forEach(point => {
+                point.opacity = 0;
+            });
+        } else {
+            fanAnimate(points[0], startAngleRad);
+        }
+    };
+}(Highcharts));
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'pie'
+    },
+    credits: {
+    enabled: false
+  },
+  navigation: {
+        buttonOptions: {
+            enabled: false
+        }
+    },
+    title: {
+        text: 'Palettes Appearance',
+        align: 'center'
+    },
+    subtitle: {
+        text: '',
+        align: 'left'
+    },
+    
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            borderWidth: 2,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.0f}%',
+                distance: 20
+            }
+        }
+    },
+    series: [{
+        
+        enableMouseTracking: false,
+        animation: {
+            duration: 1000
+        },
+        colorByPoint: true,
+        data: teste,
+    }]
+});
+
+    
+
+  
+
+function chBackcolor(color) {
+  navigator.clipboard.writeText(color);
+  $("#resc").animate({
+                    "background-color": color,
+                }, 800);
+
+  
+  
+}
+function copyc(color) {
+  navigator.clipboard.writeText(color);
+  alert("text copied");
+  
+  
+  
+}
+
+
+
+    </script>
+   
+  </body>
+</html>
