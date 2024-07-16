@@ -1,5 +1,4 @@
 asgiref==3.8.1
-contourpy==1.2.1
 cycler==0.12.1
 Django==5.0.6
 DjangoHexadecimalField==0.0.3
