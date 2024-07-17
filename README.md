@@ -2,7 +2,7 @@
 
 Step-1: Create Virtual Environment (using CMD):
 1. Change the Directory where you want to create an Virtual Environment in CMD.
-2. IN CMD use this code to create a Virtual Environment  - * py -m venv myworld*.
+2. IN CMD use this code to create a Virtual Environment  - *py -m venv myworld*.
 
 Step-2: Install packages in Virtual Environment:
 1. Change directory into ```myworld/scripts```  in CMD.
