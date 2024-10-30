@@ -1,7 +1,7 @@
 asgiref==3.8.1
 cycler==0.12.1
 contourpy==1.1.1
-Django==5.0.6
+Django==4.2.10
 DjangoHexadecimalField==0.0.3
 fonttools==4.53.0
 joblib==1.4.2
