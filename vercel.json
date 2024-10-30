@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "CAT/wsgi.py",
@@ -8,6 +7,7 @@
     },
 
   ],
+  
   "routes": [
     {
       "src": "/(.*)",
