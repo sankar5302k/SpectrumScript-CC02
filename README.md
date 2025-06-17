@@ -12,7 +12,7 @@ Step-2: Install packages in Virtual Environment:
 Step-3: Migrate the folder:
 1. Download  SpectrumScript-CC02 Folder and paste in the same folder or near where Virtual Environment is created.
 2.  Change Directory to ```SpectrumScript-CC02/```.
-3. IN CMD use this code to Migrate - *py manage.py migrate*.
+3. IN CMD use this code to Migrate - *py manage.py migrate* and *py manage.py collectstatic*.
 
 Step-4: Run the server:
 1. Change Directory to ```SpectrumScript-CC02/``` (if needed).
